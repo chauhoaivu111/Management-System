@@ -1,4 +1,3 @@
-
 import MaterialTable from 'material-table'
 import React, { forwardRef } from "react";
 import AddBox from "@material-ui/icons/AddBox";
@@ -17,8 +16,10 @@ import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { useState } from 'react';
+
 import data_management from './data/data_management';
-const Parking = () =>{
+
+const Datamanagement = () => {
 
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -42,74 +43,65 @@ const Parking = () =>{
 
   const [tableData, setTableData] = useState(data_management)
   const columns = [
-    { title: "Tên", field: "name",   },
-    // { title: "Tên", field: "email", filterPlaceholder: "filter" },
-    { title: "License Plates", field: "Plates",  grouping: false },
-    {
-      title: "identity card number", field: "ID",
-      // render: (rowData) => <div style={{ background: row,Data.ID >= 18 ? "#008000aa" : "#f90000aa",borderRadius:"4px",paddingLeft:5 }}>{rowData.age >= 18 ? "18+" : "18-"}</div>,
-      //  searchable: false, export: false
-    },
-    { title: "phone number ", field: "Phone"},
-    { title: "Location", field: "Location",filterPlaceholder:"filter" ,cellStyle: { paddingRight:"40px"},align: "center" },
-    // { title: "Schoo: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 1 },
-    // cellStyle: { background:"#009688" }, headerStyle: { color: "#fff" } },
+    { title: "STT", field: "STT", customSort: (a, b) => a.STT - b.STT },
+    { title: "Name", field: "name", sorting: false },
+    { title: "ID", field: "ID", },
+    { title: "Describe", field: "describe" },
   ]
+
   return (
     <div className="App">
 
-      
+
 
       <MaterialTable columns={columns} data={tableData}
-      icons={tableIcons}
-      style={{width:"100%",minHeight:"600px"}}
-       
-        // actions={[
-        //   {
-        //     icon: () => <GetAppIcon />,
-        //     tooltip: "Click me",
-        //     onClick: (e, data) => console.log(data),
-        //     // isFreeAction:true
-        //   }
-        // ]}
+        icons={tableIcons}
+        style={{ width: "100%", minHeight: "600px" }}
+        editable={{
+          onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
+            const updatedData = [...tableData]
+            updatedData[oldRow.tableData.id] = newRow
+            setTableData(updatedData)
+            setTimeout(() => resolve(), 500)
+          }),
+          onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+            const updatedData = [...tableData]
+            updatedData.splice(selectedRow.tableData.id, 1)
+            setTableData(updatedData)
+            setTimeout(() => resolve(), 1000)
+
+          })
+        }}
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
         options={{
           sorting: true, search: true,
           searchFieldAlignment: "right",
-          
+
           searchAutoFocus: true, searchFieldVariant: "standard",
-          // filtering: true,
-          //  paging: true,
-          
+
           pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], pageSize: 9,
 
-
-
           paginationType: "stepped", showFirstLastPageButtons: false,
-          // paginationPosition: "both",
-          
-          // exportButton: true,
-          // exportAllData: true,
-          
-          exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1, 
-          
-          
-          // selection: true,
+
+
+          exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1,
+
+
+
           showSelectAllCheckbox: false, showTextRowsSelected: false, selectionProps: rowData => ({
             disabled: rowData.age == null,
-            // color:"primary"
+
           }),
-          // grouping: true,
-          // columnsButton: true,
+
           rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          // headerStyle: { background: "#f44336",color:"#fff"}
+
         }}
-        title="Customer  Information"
-        />
-      
+        title="Management"
+      />
+
     </div>
   )
-  }
+}
 
 
-export default Parking
+export default Datamanagement

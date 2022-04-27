@@ -1,7 +1,6 @@
-
 import MaterialTable from 'material-table'
 import React, { forwardRef } from "react";
-import AddBox from "@material-ui/icons/AddBox";
+
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Check from "@material-ui/icons/Check";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -17,14 +16,13 @@ import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { useState } from 'react';
-import data_inparking from './data/data_inparking';
-const Inparking
- = () =>{
+import data_report from './data/data_report';
+
+
+const HumanResources = () => {
 
   const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
     Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
     DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
     Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
@@ -41,66 +39,81 @@ const Inparking
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   };
 
-  const [tableData, setTableData] = useState(data_inparking)
-  
+  const [tableData, setTableData] = useState(data_report)
   const columns = [
-    { title: "Tên", field: "name"   },
-    // { title: "Tên", field: "email", filterPlaceholder: "filter" },
-    { title: "License Plates", field: "Plates",  grouping: false },
-    {
-      title: "DateTime", field: "Date" , 
-      
-     
-    },
-    { title: "In", field: "current",align: "center", render: (rowData) => <div style={{ color: rowData.current === "true" ? "#008000aa" : "#f90000aa",borderRadius:"4px",paddingLeft:5,fontSize:"12px" ,fontWeight:"600"}}>{rowData.current === "true" ? "In" : "Out"}</div>,
-    searchable: false, export: false,  cellStyle: { paddingRight:"41px"}},
-    
-  
+    { title: "STT", field: "STT", customSort: (a, b) => a.STT - b.STT },
+    { title: "Photo", field: "Url", render: rowData => <img src={rowData.Url} alt ='' style={{ width: 50, height: 50, borderRadius: '50%' }} /> },
+    { title: "Staff's_Name", field: "Name" },
+    { title: "ID", field: "ID" },
+    { title: "DOB", field: "DoB" },
+    { title: "Home_Town", field: "HomeTown" },
+    { title: "Employee_Address", field: "Address" },
+    { title: "Phone_Number", field: "Phone" },
+    { title: "Email", field: "Email" },
+    { title: "Employee's_Position", field: "Position" },
+    { title: "Department", field: "Department" },
+
+
   ]
+
   return (
     <div className="App">
 
-      
+
 
       <MaterialTable columns={columns} data={tableData}
-      icons={tableIcons}
-      style={{width:"100%",minHeight:"600px"}}
-        
-      
+        icons={tableIcons}
+        style={{ width: "100%", minHeight: "600px" }}
+        editable={{
+
+          onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
+            const updatedData = [...tableData]
+            updatedData[oldRow.tableData.id] = newRow
+            setTableData(updatedData)
+            setTimeout(() => resolve(), 500)
+          }),
+          onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+            const updatedData = [...tableData]
+            updatedData.splice(selectedRow.tableData.id, 1)
+            setTableData(updatedData)
+            setTimeout(() => resolve(), 1000)
+
+          })
+        }}
+
         onSelectionChange={(selectedRows) => console.log(selectedRows)}
         options={{
           sorting: true, search: true,
           searchFieldAlignment: "right",
-          
+
           searchAutoFocus: true, searchFieldVariant: "standard",
-          
-          
+
+
           pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], pageSize: 9,
 
 
 
           paginationType: "stepped", showFirstLastPageButtons: false,
-      
-          
-          exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1, 
-          
-          
-       
+
+
+          exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1,
+
+
+
           showSelectAllCheckbox: false, showTextRowsSelected: false, selectionProps: rowData => ({
             disabled: rowData.age == null,
-       
+
           }),
-      
+
           rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-        
+
         }}
-        title="Motorbike information in the parking lot"
-        />
-      
+        title="Management"
+      />
+
     </div>
   )
-  }
+}
 
 
-export default Inparking
- 
+export default HumanResources

@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,36 +11,17 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import ListItem1 from "../components/listItem1";
-import MainListItems from "../components/listItem";
-import Report_licencse from "../components/Report_licencse";
+import ListItem1 from "../components/listItem";
 import Add from "../components/Add";
-import Author from "../components/Author";
 
 
 
-function Copyright() {
-  // classes created because it is needed in the footer.
-  const classes = useStyles();
-  return (
-    <Container className={classes.footer}>
-      <Typography variant="body2" color="textSecondary" align="center">
-        {"Copyright © "}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{" "}
-        {new Date().getFullYear()}
-        {"."}
-      </Typography>
-    </Container>
-  );
-}
+
+
 
 const drawerWidth = 240;
 
@@ -143,14 +124,15 @@ export default function Addpage() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  
 
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> */}
       <AppBar
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        className={clsx(classes.appBar, open && classes.appBarShift)} 
+        style={{backgroundColor: "#00e32b"}}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -194,22 +176,19 @@ export default function Addpage() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+
+        <List><ListItem1 /></List>
         <Divider />
-        <List><MainListItems/></List>
-        <Divider />
-        <List><ListItem1/></List>
-        <Divider />
-       <Author/>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-        <Paper > 
-              <div style={{height:"600px"}}>
-                    <Add/>
-              </div>
-              
-              </Paper>
+          <Paper >
+            <div style={{ height: "600px" }}>
+              <Add />
+            </div>
+
+          </Paper>
         </Container>
         {/* <Copyright /> */}
       </main>

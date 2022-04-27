@@ -1,29 +1,28 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+
 import Paper from "@material-ui/core/Paper";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
-import ListItem1 from "../components/listItem1";
-import MainListItems from "../components/listItem";
-import Datamanagement from "../components/Datamanagement ";
-// import Datamanagement  from "../components/Datamanagement ";
+import ListItem1 from "../components/listItem";
+
+import Datamanagement from "../components/Departments";
+
+
 import { Link } from 'react-router-dom';
-import Author from "../components/Author";
+import Avatar from '@material-ui/core/Avatar';
+
 
 
 
@@ -129,7 +128,7 @@ export default function Management() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
 
   return (
     <div className={classes.root}>
@@ -137,6 +136,7 @@ export default function Management() {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        style={{backgroundColor: "#00e32b"}}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -158,18 +158,23 @@ export default function Management() {
             noWrap
             className={classes.title}
           >
-            Management
+             <div style={{display: "flex"}}>
+      <Avatar alt="Remy Sharp" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.6435-9/118160407_322534765780395_724366523687678524_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=BT5FvF_C_vAAX9EJtPo&_nc_ht=scontent.fsgn3-1.fna&oh=00_AT-4fteixIAva7qm4dP2Cb0gYT0XUVwn3PndYPn3j_7L0Q&oe=628D8710" />
+<p style={{marginTop: "10px", marginLeft: "10px", fontSize: "15", fontWeight: "600", color: "black"}}>Sky</p>
+          </div>
+         
           </Typography>
+              
+          <Link to="/Addpage">
+            <IconButton color="inherit">
 
-          <Link to ="/Addpage">
-          <IconButton color="inherit">
-    
-         
-              <PersonAddRoundedIcon style={{fontSize:"30px"}} />
-         
-          </IconButton>
+
+              <PersonAddRoundedIcon style={{ fontSize: "30px" }} />
+
+            </IconButton>
           </Link>
-          
+         
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -184,24 +189,22 @@ export default function Management() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
-        <List><MainListItems/></List>
-        <Divider />
-        <List><ListItem1/></List>
-        <Author/>
+
+        <List><ListItem1 /></List>
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-        <Paper > 
-              <div style={{height:"600px"}}>
-                   
-       
-          <Datamanagement/>
-                    
-              </div>
-              
-              </Paper>
+          <Paper >
+            <div style={{ height: "600px" }}>
+
+
+              <Datamanagement />
+
+            </div>
+
+          </Paper>
         </Container>
         {/* <Copyright /> */}
       </main>
