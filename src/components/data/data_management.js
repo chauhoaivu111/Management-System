@@ -11,7 +11,7 @@ const data_management = [
   { STT: "6", ID: 623456789, name: "Y tế", describe: "Chăm sóc và tư vấn sức khỏe" },
   { STT: "7", ID: 723456789, name: "An ninh", describe: "Đảm bảo an ninh trật tự" },
   { STT: "8", ID: 823456789, name: "Truyền thông",  describe:"Truyền thông và marketing" },
-  { STT: "9", ID: 923456789, name: "Sự kiệnSự kiện",  describe: "Các hoạt động vui chơi, sinh hoạt"},
+  { STT: "9", ID: 923456789, name: "Sự kiện",  describe: "Các hoạt động vui chơi, sinh hoạt"},
 
 
   

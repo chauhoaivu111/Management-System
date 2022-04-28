@@ -44,9 +44,9 @@ const Datamanagement = () => {
   const [tableData, setTableData] = useState(data_management)
   const columns = [
     { title: "STT", field: "STT", customSort: (a, b) => a.STT - b.STT },
-    { title: "Name", field: "name", sorting: false },
+    { title: "Name", field: "name"},
     { title: "ID", field: "ID", },
-    { title: "Describe", field: "describe" },
+    { title: "Describe", field: "describe",sorting:false },
   ]
 
   return (

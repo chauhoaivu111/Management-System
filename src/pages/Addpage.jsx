@@ -29,6 +29,35 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
+  frame_paper:{
+    color: "white",
+    [theme.breakpoints.down("xs")]: {
+
+      // backgroundColor: "purple",
+      marginTop: "-70px",
+    
+      width:"260px",
+      margin:"auto"
+      
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      marginTop: "-90px",
+      // backgroundColor: "blue",
+      width:"100%",
+      marginLeft:"10px",
+      
+
+    },
+    "@media (min-width: 1280px)": {
+      marginTop: "-10px",
+      // backgroundColor: "red"
+    }
+  
+  }
+    
+    
+    
+  ,
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
@@ -90,7 +119,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     flexGrow: 1,
     height: "100vh",
-    overflow: "auto"
+    overflow: "auto",
+    width:"100%"
+    
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -113,6 +144,7 @@ const useStyles = makeStyles(theme => ({
     // just this item, push to bottom
     alignSelf: "flex-end"
   }
+
 }));
 
 export default function Addpage() {
@@ -154,7 +186,7 @@ export default function Addpage() {
             noWrap
             className={classes.title}
           >
-            Add User
+            Add Department
           </Typography>
 
           <IconButton color="inherit">
@@ -183,7 +215,7 @@ export default function Addpage() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Paper >
+          <Paper className={classes.frame_paper}  >
             <div style={{ height: "600px" }}>
               <Add />
             </div>

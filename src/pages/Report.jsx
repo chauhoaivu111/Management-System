@@ -32,6 +32,31 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingRight: 24 // keep right padding when drawer closed
   },
+  frame_paper:{
+    color: "white",
+    [theme.breakpoints.down("xs")]: {
+
+      // backgroundColor: "purple",
+      marginTop: "-70px",
+    
+      width:"290px",
+      margin:"auto"
+      
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      marginTop: "-90px",
+      // backgroundColor: "blue",
+      width:"100%",
+      marginLeft:"10px",
+      
+
+    },
+    "@media (min-width: 1280px)": {
+      marginTop: "-10px",
+      // backgroundColor: "red"
+    }
+  
+  },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
@@ -186,7 +211,7 @@ export default function Report() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Paper >
+          <Paper className={classes.frame_paper} >
             <div style={{ height: "600px" }}>
              <HumanResources/>
             </div>

@@ -42,15 +42,15 @@ const HumanResources = () => {
   const [tableData, setTableData] = useState(data_report)
   const columns = [
     { title: "STT", field: "STT", customSort: (a, b) => a.STT - b.STT },
-    { title: "Photo", field: "Url", render: rowData => <img src={rowData.Url} alt ='' style={{ width: 50, height: 50, borderRadius: '50%' }} /> },
+    { title: "Photo", field: "Url",sorting:false, render: rowData => <img src={rowData.Url} alt ='' style={{ width: 50, height: 50, borderRadius: '50%' }} /> },
     { title: "Staff's_Name", field: "Name" },
     { title: "ID", field: "ID" },
-    { title: "DOB", field: "DoB" },
-    { title: "Home_Town", field: "HomeTown" },
-    { title: "Employee_Address", field: "Address" },
-    { title: "Phone_Number", field: "Phone" },
-    { title: "Email", field: "Email" },
-    { title: "Employee's_Position", field: "Position" },
+    { title: "DOB", field: "DoB" ,sorting:false },
+    { title: "Home_Town", field: "HomeTown",sorting:false },
+    { title: "Employee_Address", field: "Address",sorting:false },
+    { title: "Phone_Number", field: "Phone",sorting:false },
+    { title: "Email", field: "Email",sorting:false },
+    { title: "Employee's_Position", field: "Position",sorting:false },
     { title: "Department", field: "Department" },
 
 
