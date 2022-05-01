@@ -8,21 +8,15 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
-
 import Paper from "@material-ui/core/Paper";
-
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 import ListItem1 from "../components/listItem";
-
 import Datamanagement from "../components/Departments";
-
-
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-
+import Helmet from "../components/Helmet";
 
 
 
@@ -156,8 +150,8 @@ export default function Management() {
 
 
   return (
-    <div className={classes.root}>
-      {/* <CssBaseline /> */}
+    <Helmet>
+      <div className={classes.root}>
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
@@ -234,5 +228,7 @@ export default function Management() {
         {/* <Copyright /> */}
       </main>
     </div>
+    </Helmet>
+    
   );
 }
